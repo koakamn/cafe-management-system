@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Our Menu</h1>
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h4>{{ product.name }}</h4>
+                <p>{{ product.description }}</p>
+                <p class="fw-bold">{{ product.price }} ₸</p>
+                <span class="badge bg-dark">{{ product.category.name }}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
