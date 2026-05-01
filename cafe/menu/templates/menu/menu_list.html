@@ -10,6 +10,14 @@
 </div>
 
 <div class="row g-4">
+    <div class="text-center mb-4">
+    <a href="/menu/" class="btn btn-dark m-1">All</a>
+    {% for category in categories %}
+        <a href="/menu/?category={{ category.id }}" class="btn btn-outline-dark m-1">
+            {{ category.name }}
+        </a>
+    {% endfor %}
+</div>
 
 {% for product in products %}
 <div class="col-md-6 col-lg-4">
@@ -33,6 +41,8 @@
             <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fs-5 fw-bold text-success">{{ product.price }} ₸</span>
                 <a href="#" class="btn btn-dark">Order Now</a>
+                 <a href="{% url 'product_detail' product.id %}" class="btn btn-dark">
+    View</a>
             </div>
 
         </div>
