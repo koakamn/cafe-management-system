@@ -22,3 +22,11 @@ def cart_remove(request,product_id):
 
     cart.remove(product)
     return redirect('cart_detail')
+
+def cart_update(request,product_id,quantity):
+    cart=Cart(request)
+
+    product=get_object_or_404(Product,id=product_id)
+    cart.update(product,quantity)
+
+    return redirect('cart_detail')
