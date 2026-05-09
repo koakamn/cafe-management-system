@@ -1,5 +1,87 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
-{%block content%}
-<h1>Home page</h1>
-{%endblock%}
+{% block title %}Cafe{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="text-center py-5">
+
+    <h1 class="display-3 fw-bold mb-3">
+        Welcome to Cafe
+    </h1>
+
+    <p class="lead text-muted mb-4">
+        Fresh coffee. Delicious desserts. Cozy atmosphere.
+    </p>
+
+    <a href="/menu/" class="btn btn-dark btn-lg px-4">
+        View Menu
+    </a>
+
+</section>
+
+
+<!-- Features -->
+<section class="row text-center g-4 py-5">
+
+    <div class="col-md-4">
+        <div class="card border-dark shadow-sm h-100 p-4">
+            <h3 class="fw-bold mb-3">Fresh Coffee</h3>
+            <p class="text-muted">
+                We prepare every cup with high quality coffee beans.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-dark shadow-sm h-100 p-4">
+            <h3 class="fw-bold mb-3">Fast Delivery</h3>
+            <p class="text-muted">
+                Order online and get your favorite drinks quickly.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-dark  h-100 p-4">
+            <h3 class="fw-bold mb-3">Best Desserts</h3>
+            <p class="text-muted">
+                Sweet desserts and snacks for every taste.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- About Preview -->
+<section class="py-5 text-center border-dark">
+
+    <h2 class="fw-bold mb-3">Why Choose Us?</h2>
+
+    <p class="text-muted mx-auto" style="max-width:700px;">
+        Cafe is a modern place where you can enjoy quality coffee,
+        fresh ingredients, and a warm atmosphere. We focus on great
+        service and unforgettable taste.
+    </p>
+
+</section>
+
+
+<!-- CTA -->
+<section class="bg-dark text-white text-center rounded-4 p-5 mt-5">
+
+    <h2 class="fw-bold mb-3">Ready to Order?</h2>
+
+    <p class="mb-4">
+        Explore our menu and choose your favorite drinks.
+    </p>
+
+    <a href="/menu/" class="btn btn-light btn-lg px-4">
+        Order Now
+    </a>
+
+</section>
+
+{% endblock %}
