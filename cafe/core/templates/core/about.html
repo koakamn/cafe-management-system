@@ -1,5 +1,141 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
-{%block content%}
-<h1>About site</h1>
-{%endblock%}
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+<div class="text-center mb-5">
+
+    <h1 class="display-4 fw-bold">
+        About Our Cafe
+    </h1>
+
+    <p class="lead text-muted">
+        Fresh coffee. Cozy atmosphere. Amazing taste.
+    </p>
+
+</div>
+
+<div class="row g-4 mb-5">
+
+    <div class="col-md-6">
+
+        <div class="card h-100 shadow-sm border-dark">
+
+            <div class="card-body p-4">
+
+                <h3 class="fw-bold mb-3">
+                    Our Story
+                </h3>
+
+                <p class="text-muted">
+
+                    Cafe was created for people who love
+                    high-quality coffee and warm atmosphere.
+
+                    We carefully select ingredients,
+                    prepare drinks with passion,
+                    and create a place where everyone
+                    feels comfortable.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card h-100 shadow-sm border-dark">
+
+            <div class="card-body p-4">
+
+                <h3 class="fw-bold mb-3">
+                    Why Choose Us?
+                </h3>
+
+                <ul class="text-muted">
+
+                    <li>Fresh coffee beans</li>
+                    <li>Fast delivery</li>
+                    <li>Friendly staff</li>
+                    <li>Modern atmosphere</li>
+                    <li>Delicious desserts</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row text-center g-4">
+
+    <div class="col-md-4">
+
+        <div class="card border-dark shadow-sm">
+
+            <div class="card-body">
+
+                <h2 class="fw-bold">
+                    5+
+                </h2>
+
+                <p class="text-muted">
+                    Years Experience
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card border-dark shadow-sm">
+
+            <div class="card-body">
+
+                <h2 class="fw-bold">
+                    1000+
+                </h2>
+
+                <p class="text-muted">
+                    Happy Customers
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card border-dark shadow-sm">
+
+            <div class="card-body">
+
+                <h2 class="fw-bold">
+                    50+
+                </h2>
+
+                <p class="text-muted">
+                    Menu Items
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

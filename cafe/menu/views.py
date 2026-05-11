@@ -14,6 +14,7 @@ def menu_list(request):
     context={
         'products':products,
         'categories':categories,
+        'selected_category':category_id
     }
     return render(request, 'menu/menu_list.html', context)
 
