@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from menu.models import Product
 from .cart import  Cart
 from .forms import CheckoutForm
-from .models import OrderItem
+from .models import OrderItem, Order
+from django.contrib.auth.decorators import login_required
 
 
 def cart_add(request,product_id):
@@ -33,13 +34,16 @@ def cart_update(request,product_id,quantity):
 
     return redirect('cart_detail')
 
+@login_required
 def checkout(request):
     cart=Cart(request)
 
     if request.method=='POST':
         form=CheckoutForm(request.POST)
         if form.is_valid():
-            order=form.save()
+            order=form.save(commit=False)
+            order.user=request.user
+            order.save()
 
             for item in cart:
                 OrderItem.objects.create(
@@ -55,3 +59,8 @@ def checkout(request):
         form=CheckoutForm()
 
     return render(request,'orders/checkout.html',{'form':form,'cart':cart})
+
+@login_required
+def my_orders(request):
+    orders=Order.objects.filter(user=request.user).order_by('-created_at')
+    return render(request,'orders/my_orders.html',{'orders':orders})

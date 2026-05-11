@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">My Orders</h1>
+
+{% for order in orders %}
+
+<div class="card border-dark mb-4">
+
+    <div class="card-body">
+
+        <h5>
+            Order #{{ order.id }}
+        </h5>
+
+        <p class="text-muted">
+            {{ order.created_at }}
+        </p>
+
+        <ul class="list-group">
+
+            {% for item in order.items.all %}
+
+            <li class="list-group-item d-flex justify-content-between">
+
+                <span>
+                    {{ item.product.name }}
+                    x {{ item.quantity }}
+                </span>
+
+                <span>
+                    {{ item.price }} ₸
+                </span>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p>You have no orders yet.</p>
+
+{% endfor %}
+
+{% endblock %}

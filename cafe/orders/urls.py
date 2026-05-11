@@ -7,4 +7,5 @@ urlpatterns=[
     path('remove/<int:product_id>/',cart_remove,name='cart_remove'),
     path('update/<int:product_id>/<int:quantity>/',cart_update,name='cart_update'),
     path('checkout/',checkout,name='checkout'),
+    path('my-orders/',my_orders,name='my_orders'),
 ]

@@ -1,12 +1,17 @@
 from django.db import models
 from menu.models import Product
+from django.contrib.auth.models import User
 
 class Order(models.Model):
     name=models.CharField(max_length=100)
     phone=models.CharField(max_length=15)
     address=models.TextField()
-
     created_at=models.DateTimeField(auto_now_add=True)
+
+    user=models.ForeignKey(User,on_delete=models.CASCADE,
+                           related_name='orders',
+                           null=True,
+                           blank=True,)
 
     def __str__(self):
         return f'Order #{self.id}'
