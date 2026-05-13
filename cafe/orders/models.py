@@ -2,11 +2,19 @@ from django.db import models
 from menu.models import Product
 from django.contrib.auth.models import User
 
+STATUS_CHOICES = [
+    ('pending','Pending'),
+    ('preparing','Preparing'),
+    ('delivering','Delivering'),
+    ('completed','Completed')
+]
+
 class Order(models.Model):
     name=models.CharField(max_length=100)
     phone=models.CharField(max_length=15)
     address=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
+    status=models.CharField(choices=STATUS_CHOICES,default='pending',max_length=20)
 
     user=models.ForeignKey(User,on_delete=models.CASCADE,
                            related_name='orders',

@@ -15,6 +15,12 @@
         <h5>
             Order #{{ order.id }}
         </h5>
+        <p>
+            Status:
+            <span class="fw-bold">
+                {{order.get_status_display}}
+            </span>
+        </p>
 
         <p class="text-muted">
             {{ order.created_at }}
