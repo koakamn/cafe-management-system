@@ -15,12 +15,26 @@
         <h5>
             Order #{{ order.id }}
         </h5>
-        <p>
-            Status:
-            <span class="fw-bold">
-                {{order.get_status_display}}
-            </span>
-        </p>
+     <p class="mt-2">
+    Status:
+    {% if order.status == 'pending' %}
+        <span class="badge bg-warning text-dark">
+            Pending
+        </span>
+    {% elif order.status == 'preparing' %}
+        <span class="badge bg-primary">
+            Preparing
+        </span>
+    {% elif order.status == 'delivering' %}
+        <span class="badge bg-info text-dark">
+            Delivering
+        </span>
+    {% elif order.status == 'completed' %}
+        <span class="badge bg-success">
+            Completed
+        </span>
+    {% endif %}
+</p>
 
         <p class="text-muted">
             {{ order.created_at }}
