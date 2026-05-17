@@ -139,5 +139,9 @@ LOGOUT_REDIRECT_URL = '/'
 
 LOGIN_URL = '/accounts/login/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STORAGES={
+    'staticfiles':{
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    }
+}
 
