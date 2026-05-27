@@ -1,120 +1,207 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Cafe{% endblock %}
+{% block title %}Cafe — Premium Coffee Experience in Astana{% endblock %}
 
 {% block content %}
 
-<!-- Hero Section -->
-<section class="text-center py-5">
-
-    <h1 class="display-3 fw-bold mb-3">
-        Welcome to Cafe
-    </h1>
-
-    <p class="lead text-muted mb-4">
-        Fresh coffee. Delicious desserts. Cozy atmosphere.
-    </p>
-
-    <a href="/menu/" class="btn btn-dark btn-lg px-4">
-        View Menu
-    </a>
-
-</section>
-
-
-<!-- Features -->
-<section class="row text-center g-4 py-5">
-
-    <div class="col-md-4">
-        <div class="card border-dark shadow-sm h-100 p-4">
-            <h3 class="fw-bold mb-3">Fresh Coffee</h3>
-            <p class="text-muted">
-                We prepare every cup with high quality coffee beans.
-            </p>
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge">✦ Premium Coffee Since 2020</span>
+        <h1>Discover the Art of<br><span>Perfect Coffee</span></h1>
+        <p>
+            Handcrafted beverages, artisan desserts, and an atmosphere
+            that transforms every sip into an unforgettable moment.
+        </p>
+        <div class="hero-buttons">
+            <a href="/menu/" class="btn-cafe btn-cafe-lg" id="hero-cta-menu">
+                <i class="fa-solid fa-utensils"></i> Explore Menu
+            </a>
+            <a href="/about/" class="btn-cafe-outline" id="hero-cta-about">
+                Our Story <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
     </div>
-
-    <div class="col-md-4">
-        <div class="card border-dark shadow-sm h-100 p-4">
-            <h3 class="fw-bold mb-3">Fast Delivery</h3>
-            <p class="text-muted">
-                Order online and get your favorite drinks quickly.
-            </p>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card border-dark  h-100 p-4">
-            <h3 class="fw-bold mb-3">Best Desserts</h3>
-            <p class="text-muted">
-                Sweet desserts and snacks for every taste.
-            </p>
-        </div>
-    </div>
-
 </section>
 
+<!-- ═══════════════ FEATURES ═══════════════ -->
+<section class="section">
+    <div class="container">
 
-<!-- About Preview -->
-<section class="py-5 text-center border-dark">
+        <div class="section-title reveal">
+            <h2>Why Choose Cafe?</h2>
+            <p>We don't just serve coffee — we craft experiences that keep you coming back</p>
+            <div class="divider"></div>
+        </div>
 
-    <h2 class="fw-bold mb-3">Why Choose Us?</h2>
+        <div class="row g-4">
 
-    <p class="text-muted mx-auto" style="max-width:700px;">
-        Cafe is a modern place where you can enjoy quality coffee,
-        fresh ingredients, and a warm atmosphere. We focus on great
-        service and unforgettable taste.
-    </p>
-
-</section>
-<div class="mt-5">
-    <h2 class="fw-bold text-center mb-5">
-        Featured Products
-    </h2>
-    <div class="row g-4">
-        {% for product in featured_products %}
-        <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-dark">
-                {% if product.image %}
-                    <img src="{{ product.image.url }}"
-                         class="card-img-top"
-                         style="height:250px; object-fit:cover;">
-                {% endif %}
-                <div class="card-body d-flex flex-column">
-                    <span class="badge bg-dark mb-2">
-                        {{ product.category.name }}
-                    </span>
-                    <h4 class="fw-bold">
-                        {{ product.name }}
-                    </h4>
-                    <p class="text-muted">
-                        {{ product.description }}
+            <div class="col-md-4 reveal stagger-1">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                    <h3>Premium Beans</h3>
+                    <p>
+                        We source only the finest Arabica beans from
+                        the world's top coffee regions, roasted to perfection.
                     </p>
-                    <div class="mt-auto d-flex justify-content-between align-items-center">
-                        <span class="fw-bold text-success">
-                            {{ product.price }} ₸
-                        </span>
-                        <a href="{% url 'product_detail' product.id %}"
-                           class="btn btn-dark">
-                            View
-                        </a>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal stagger-2">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>Fast Delivery</h3>
+                    <p>
+                        Order online and get your favorite drinks delivered
+                        fast to your doorstep, still fresh and hot.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal stagger-3">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                    <h3>Artisan Desserts</h3>
+                    <p>
+                        Handmade pastries and desserts baked fresh daily,
+                        the perfect complement to your coffee.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ FEATURED PRODUCTS ═══════════════ -->
+{% if featured_products %}
+<section class="section section-alt">
+    <div class="container">
+
+        <div class="section-title reveal">
+            <h2>Featured Selections</h2>
+            <p>Our most loved items, handpicked for you</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="row g-4">
+            {% for product in featured_products %}
+            <div class="col-md-6 col-lg-4 reveal stagger-{{ forloop.counter }}">
+                <div class="menu-card">
+                    <div class="card-img-wrapper">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}"
+                                 alt="{{ product.name }}"
+                                 loading="lazy">
+                        {% else %}
+                            <div style="height:260px;background:linear-gradient(135deg,var(--cream),var(--latte));display:flex;align-items:center;justify-content:center;">
+                                <i class="fa-solid fa-mug-hot fa-3x" style="color:var(--caramel);opacity:0.3;"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body">
+                        <span class="card-category">{{ product.category.name }}</span>
+                        <h3 class="card-title">{{ product.name }}</h3>
+                        <p class="card-text">{{ product.description|truncatewords:15 }}</p>
+                        <div class="card-footer-custom">
+                            <span class="card-price">{{ product.price }} ₸</span>
+                            <div class="card-actions">
+                                <a href="{% url 'cart_add' product.id %}"
+                                   class="btn-cafe btn-cafe-sm"
+                                   id="featured-add-{{ product.id }}">
+                                    <i class="fa-solid fa-plus"></i> Add
+                                </a>
+                                <a href="{% url 'product_detail' product.id %}"
+                                   class="btn-cafe-dark btn-cafe-sm"
+                                   id="featured-view-{{ product.id }}">
+                                    View
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+
+        <div class="text-center mt-5 reveal">
+            <a href="/menu/" class="btn-cafe-dark btn-cafe-lg" id="featured-view-all">
+                View Full Menu <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+
     </div>
-</div>
-
-<section class="bg-dark text-white text-center rounded-4 p-5 mt-5">
-
-    <h2 class="fw-bold mb-3">Ready to Order?</h2>
-
-    <p class="mb-4">
-        Explore our menu and choose your favorite drinks.
-    </p>
-    <a href="/menu/" class="btn btn-light btn-lg px-4">
-        Order Now
-    </a>
 </section>
+{% endif %}
+
+<!-- ═══════════════ ABOUT PREVIEW ═══════════════ -->
+<section class="section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6 reveal-left">
+                <span class="hero-badge" style="color:var(--caramel);border-color:rgba(200,149,108,0.3);background:rgba(200,149,108,0.08);">
+                    ✦ Our Story
+                </span>
+                <h2 style="font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin:1rem 0;">
+                    A Place Where Every Cup<br>Tells a Story
+                </h2>
+                <p style="color:var(--text-secondary);font-size:1.05rem;line-height:1.8;margin-bottom:2rem;">
+                    Cafe was born from a passion for quality coffee and warm hospitality.
+                    We carefully select ingredients, prepare drinks with love,
+                    and create a space where everyone feels at home.
+                </p>
+                <a href="/about/" class="btn-cafe-dark" id="about-preview-cta">
+                    Learn More <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <div class="col-lg-6 reveal-right">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <h2>5+</h2>
+                            <p>Years of Experience</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <h2>1K+</h2>
+                            <p>Happy Customers</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <h2>50+</h2>
+                            <p>Menu Items</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <h2>4.9</h2>
+                            <p>Average Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section class="section section-alt" style="padding-bottom:6rem;">
+    <div class="container">
+        <div class="cta-banner reveal">
+            <h2>Ready to Taste Perfection?</h2>
+            <p>Browse our menu and order your favorite drinks & desserts for delivery</p>
+            <a href="/menu/" class="btn-cafe btn-cafe-lg" id="cta-order">
+                <i class="fa-solid fa-bag-shopping"></i> Order Now
+            </a>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

@@ -1,141 +1,174 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}About{% endblock %}
+{% block title %}About — Cafe{% endblock %}
 
 {% block content %}
 
-<div class="text-center mb-5">
+<!-- ═══════════════ PAGE HEADER ═══════════════ -->
+<section class="page-header">
+    <div class="container">
+        <h1>About Us</h1>
+        <p>The story behind every perfect cup we serve</p>
+        <div class="breadcrumb-nav">
+            <a href="/">Home</a>
+            <span class="mx-2">/</span>
+            <span>About</span>
+        </div>
+    </div>
+</section>
 
-    <h1 class="display-4 fw-bold">
-        About Our Cafe
-    </h1>
+<!-- ═══════════════ OUR STORY ═══════════════ -->
+<section class="section">
+    <div class="container">
+        <div class="about-story">
 
-    <p class="lead text-muted">
-        Fresh coffee. Cozy atmosphere. Amazing taste.
-    </p>
-
-</div>
-
-<div class="row g-4 mb-5">
-
-    <div class="col-md-6">
-
-        <div class="card h-100 shadow-sm border-dark">
-
-            <div class="card-body p-4">
-
-                <h3 class="fw-bold mb-3">
-                    Our Story
-                </h3>
-
-                <p class="text-muted">
-
-                    Cafe was created for people who love
-                    high-quality coffee and warm atmosphere.
-
-                    We carefully select ingredients,
-                    prepare drinks with passion,
-                    and create a place where everyone
-                    feels comfortable.
-
+            <div class="about-story-text reveal-left">
+                <span class="hero-badge" style="color:var(--caramel);border-color:rgba(200,149,108,0.3);background:rgba(200,149,108,0.08);">
+                    ✦ Est. 2020
+                </span>
+                <h2>Our Story</h2>
+                <p>
+                    Cafe was created for people who love high‑quality coffee
+                    and a warm, welcoming atmosphere. What started as a small
+                    dream has grown into a beloved destination for coffee
+                    enthusiasts across Astana.
                 </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-6">
-
-        <div class="card h-100 shadow-sm border-dark">
-
-            <div class="card-body p-4">
-
-                <h3 class="fw-bold mb-3">
-                    Why Choose Us?
-                </h3>
-
-                <ul class="text-muted">
-
-                    <li>Fresh coffee beans</li>
-                    <li>Fast delivery</li>
-                    <li>Friendly staff</li>
-                    <li>Modern atmosphere</li>
-                    <li>Delicious desserts</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="row text-center g-4">
-
-    <div class="col-md-4">
-
-        <div class="card border-dark shadow-sm">
-
-            <div class="card-body">
-
-                <h2 class="fw-bold">
-                    5+
-                </h2>
-
-                <p class="text-muted">
-                    Years Experience
+                <p>
+                    We carefully select the finest ingredients from around
+                    the world, prepare every drink with passion and precision,
+                    and create an environment where everyone feels comfortable,
+                    inspired, and at home.
                 </p>
+            </div>
 
+            <div class="reveal-right">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <h2>5+</h2>
+                            <p>Years Experience</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <h2>1K+</h2>
+                            <p>Happy Customers</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <h2>50+</h2>
+                            <p>Menu Items</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-card">
+                            <h2>15+</h2>
+                            <p>Team Members</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ OUR VALUES ═══════════════ -->
+<section class="section section-alt">
+    <div class="container">
+
+        <div class="section-title reveal">
+            <h2>Why Choose Us?</h2>
+            <p>The values that drive everything we do at Cafe</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4 reveal stagger-1">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <h3>Fresh Ingredients</h3>
+                    <p>
+                        We use only the freshest, highest‑quality coffee beans
+                        sourced directly from top farms around the world.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal stagger-2">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3>Fast Delivery</h3>
+                    <p>
+                        We deliver your order quickly so you can enjoy
+                        your coffee while it's still perfectly fresh and hot.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal stagger-3">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
+                    <h3>Friendly Staff</h3>
+                    <p>
+                        Our passionate baristas are trained to make every visit
+                        a warm, welcoming, and memorable experience.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal stagger-1">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-house"></i></div>
+                    <h3>Cozy Atmosphere</h3>
+                    <p>
+                        A modern, comfortable space designed for relaxation,
+                        creative work, and quality time with friends.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal stagger-2">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                    <h3>Artisan Desserts</h3>
+                    <p>
+                        Sweet pastries and desserts baked fresh every day —
+                        the perfect pairing for your favorite coffee.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 reveal stagger-3">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-recycle"></i></div>
+                    <h3>Eco-Friendly</h3>
+                    <p>
+                        We're committed to sustainability with eco‑friendly
+                        packaging and responsible sourcing practices.
+                    </p>
+                </div>
             </div>
 
         </div>
 
     </div>
+</section>
 
-    <div class="col-md-4">
-
-        <div class="card border-dark shadow-sm">
-
-            <div class="card-body">
-
-                <h2 class="fw-bold">
-                    1000+
-                </h2>
-
-                <p class="text-muted">
-                    Happy Customers
-                </p>
-
-            </div>
-
+<!-- ═══════════════ CTA ═══════════════ -->
+<section class="section">
+    <div class="container">
+        <div class="cta-banner reveal">
+            <h2>Come Visit Us Today</h2>
+            <p>Experience the perfect cup in person. We're waiting for you!</p>
+            <a href="/contact/" class="btn-cafe btn-cafe-lg" id="about-cta-contact">
+                <i class="fa-solid fa-location-dot"></i> Find Us
+            </a>
         </div>
-
     </div>
-
-    <div class="col-md-4">
-
-        <div class="card border-dark shadow-sm">
-
-            <div class="card-body">
-
-                <h2 class="fw-bold">
-                    50+
-                </h2>
-
-                <p class="text-muted">
-                    Menu Items
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+</section>
 
 {% endblock %}

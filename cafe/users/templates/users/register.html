@@ -1,52 +1,55 @@
 {% extends 'base.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register — Cafe{% endblock %}
 
 {% block content %}
-
-<div class="row justify-content-center">
-
-    <div class="col-md-5">
-
-        <div class="card shadow-sm border-dark p-4">
-
-            <h2 class="mb-4 text-center fw-bold">
-                Register
-            </h2>
-
-            <form method="post">
-
-                {% csrf_token %}
-                {{form.errors}}
-
-                <div class="mb-3">
-                    {{ form.username.label_tag }}
-                    {{ form.username }}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.password1.label_tag }}
-                    {{ form.password1 }}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.password2.label_tag }}
-                    {{ form.password2 }}
-                </div>
-
-                <button type="submit"
-                        class="btn btn-dark w-100">
-
-                    Create Account
-
-                </button>
-
-            </form>
-
+<div class="auth-wrapper">
+    <div class="auth-card animate-in" style="max-width: 550px;">
+        <div class="auth-icon">
+            <i class="fa-solid fa-user-plus" style="color:var(--caramel);"></i>
         </div>
+        <h2>Create Account</h2>
+        <p class="auth-subtitle">Join us for a premium coffee experience</p>
 
+        <form method="post" class="cafe-form">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <ul class="error-list">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+            </div>
+
+            <button type="submit" class="btn-cafe btn-cafe-lg w-100 mt-3" style="justify-content:center;">
+                Create Account <i class="fa-solid fa-user-check ms-2"></i>
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Already have an account? <a href="{% url 'login' %}">Log in here</a>
+        </div>
     </div>
-
 </div>
-
 {% endblock %}

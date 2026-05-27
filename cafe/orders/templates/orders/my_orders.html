@@ -1,74 +1,70 @@
 {% extends 'base.html' %}
 
-{% block title %}My Orders{% endblock %}
+{% block title %}My Orders — Cafe{% endblock %}
 
 {% block content %}
-
-<h1 class="mb-4">My Orders</h1>
-
-{% for order in orders %}
-
-<div class="card border-dark mb-4">
-
-    <div class="card-body">
-
-        <h5>
-            Order #{{ order.id }}
-        </h5>
-     <p class="mt-2">
-    Status:
-    {% if order.status == 'pending' %}
-        <span class="badge bg-warning text-dark">
-            Pending
-        </span>
-    {% elif order.status == 'preparing' %}
-        <span class="badge bg-primary">
-            Preparing
-        </span>
-    {% elif order.status == 'delivering' %}
-        <span class="badge bg-info text-dark">
-            Delivering
-        </span>
-    {% elif order.status == 'completed' %}
-        <span class="badge bg-success">
-            Completed
-        </span>
-    {% endif %}
-</p>
-
-        <p class="text-muted">
-            {{ order.created_at }}
-        </p>
-
-        <ul class="list-group">
-
-            {% for item in order.items.all %}
-
-            <li class="list-group-item d-flex justify-content-between">
-
-                <span>
-                    {{ item.product.name }}
-                    x {{ item.quantity }}
-                </span>
-
-                <span>
-                    {{ item.price }} ₸
-                </span>
-
-            </li>
-
-            {% endfor %}
-
-        </ul>
-
+<section class="page-header">
+    <div class="container">
+        <h1>My Orders</h1>
+        <div class="breadcrumb-nav">
+            <a href="/">Home</a>
+            <span class="mx-2">/</span>
+            <span>Orders</span>
+        </div>
     </div>
+</section>
 
-</div>
-
-{% empty %}
-
-<p>You have no orders yet.</p>
-
-{% endfor %}
-
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                {% if orders %}
+                    {% for order in orders %}
+                    <div class="order-card reveal stagger-{{ forloop.counter|default:1 }}">
+                        <div class="order-header">
+                            <h5>Order #{{ order.id }}</h5>
+                            {% if order.status == 'pending' %}
+                                <span class="badge-status badge-pending">Pending</span>
+                            {% elif order.status == 'preparing' %}
+                                <span class="badge-status badge-preparing">Preparing</span>
+                            {% elif order.status == 'delivering' %}
+                                <span class="badge-status badge-delivering">Delivering</span>
+                            {% elif order.status == 'completed' %}
+                                <span class="badge-status badge-completed">Completed</span>
+                            {% endif %}
+                        </div>
+                        <div class="order-body">
+                            <div class="order-meta mb-3">
+                                <span><i class="fa-solid fa-calendar"></i> {{ order.created_at|date:"M d, Y" }}</span>
+                                <span><i class="fa-solid fa-clock"></i> {{ order.created_at|time:"H:i" }}</span>
+                            </div>
+                            
+                            <div class="order-items-list">
+                                {% for item in order.items.all %}
+                                <div class="order-item">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="fw-bold text-caramel">{{ item.quantity }}x</span>
+                                        <span>{{ item.product.name }}</span>
+                                    </div>
+                                    <span class="fw-bold">{{ item.price }} ₸</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state reveal">
+                        <div class="empty-icon"><i class="fa-solid fa-receipt"></i></div>
+                        <h3>No orders yet</h3>
+                        <p>You haven't placed any orders yet. Check out our menu to start your first order!</p>
+                        <a href="/menu/" class="btn-cafe">
+                            <i class="fa-solid fa-utensils me-2"></i> Browse Menu
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

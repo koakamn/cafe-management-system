@@ -1,38 +1,43 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Login — Cafe{% endblock %}
 
 {% block content %}
-
-<div class="row justify-content-center">
-
-    <div class="col-md-5">
-
-        <div class="card shadow-sm border-dark p-4">
-
-            <h2 class="mb-4 text-center fw-bold">
-                Login
-            </h2>
-
-            <form method="post">
-
-                {% csrf_token %}
-
-                {{ form.as_p }}
-
-                <button type="submit"
-                        class="btn btn-dark w-100">
-
-                    Login
-
-                </button>
-
-            </form>
-
+<div class="auth-wrapper">
+    <div class="auth-card animate-in">
+        <div class="auth-icon">
+            <i class="fa-solid fa-user" style="color:var(--caramel);"></i>
         </div>
+        <h2>Welcome Back</h2>
+        <p class="auth-subtitle">Log in to your account to continue</p>
 
+        <form method="post" class="cafe-form">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <ul class="error-list">
+                    <li>Invalid username or password. Please try again.</li>
+                </ul>
+            {% endif %}
+
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="btn-cafe btn-cafe-lg w-100 mt-3" style="justify-content:center;">
+                Log In <i class="fa-solid fa-right-to-bracket ms-2"></i>
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="{% url 'register' %}">Sign up here</a>
+        </div>
     </div>
-
 </div>
-
 {% endblock %}

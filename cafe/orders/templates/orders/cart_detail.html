@@ -1,62 +1,104 @@
 {% extends 'base.html' %}
 
-{% block title %}Cart{% endblock %}
+{% block title %}Cart — Cafe{% endblock %}
 
 {% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Your Cart</h1>
+        <div class="breadcrumb-nav">
+            <a href="/">Home</a>
+            <span class="mx-2">/</span>
+            <span>Cart</span>
+        </div>
+    </div>
+</section>
 
-<h1 class="mb-4">Your Cart</h1>
-<div class="mt-4 d-flex justify-content-between">
-    <a href="/menu/" class="btn btn-outline-dark">
-        Continue Shopping
-    </a>
+<section class="cart-section section">
+    <div class="container">
+        {% if cart %}
+        <div class="row g-5">
+            <div class="col-lg-8 reveal-left">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">Total</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart %}
+                        <tr>
+                            <td data-label="Product">
+                                <div class="d-flex align-items-center gap-3">
+                                    {% if item.product.image %}
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width:60px; height:60px; object-fit:cover; border-radius:var(--radius-sm);">
+                                    {% else %}
+                                        <div style="width:60px; height:60px; background:var(--latte); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center;">
+                                            <i class="fa-solid fa-coffee text-muted"></i>
+                                        </div>
+                                    {% endif %}
+                                    <strong>{{ item.product.name }}</strong>
+                                </div>
+                            </td>
+                            <td data-label="Quantity" class="text-center">
+                                <div class="qty-controls justify-content-lg-center">
+                                    <a href="{% url 'cart_update' item.product.id item.quantity|add:'-1' %}" class="qty-btn"><i class="fa-solid fa-minus"></i></a>
+                                    <span class="qty-display">{{ item.quantity }}</span>
+                                    <a href="{% url 'cart_update' item.product.id item.quantity|add:'1' %}" class="qty-btn"><i class="fa-solid fa-plus"></i></a>
+                                </div>
+                            </td>
+                            <td data-label="Price" class="text-end">{{ item.product.price }} ₸</td>
+                            <td data-label="Total" class="text-end fw-bold text-caramel">{{ item.total_price }} ₸</td>
+                            <td data-label="Action" class="text-center">
+                                <a href="{% url 'cart_remove' item.product.id %}" class="remove-btn">
+                                    <i class="fa-solid fa-trash-can"></i> Remove
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-    <a href="{%url 'checkout'%}" class="btn btn-dark">
-        Checkout
-    </a>
-</div>
-
-{% if cart %}
-<table class="table align-middle">
-    <thead>
-        <tr>
-            <th>Product</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Total</th>
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        {% for item in cart %}
-        <tr>
-            <td>{{ item.product.name }}</td>
-            <td>
-                <a href="{%url 'cart_update' item.product.id item.quantity|add:'-1' %}"
-                   class="btn btn-sm btn-outline-dark">-</a>
-                <span class="mx-2">{{item.quantity}}</span>
-                <a href="{%url 'cart_update' item.product.id item.quantity|add:'1' %}"
-                   class="btn btn-sm btn-outline-dark">+</a>
-            </td>
-            <td>{{ item.product.price }} ₸</td>
-            <td>{{ item.total_price }} ₸</td>
-            <td>
-                <a href="{% url 'cart_remove' item.product.id %}" class="btn btn-sm btn-danger">
-                    Remove
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<h3 class="text-end">
-    Total: {{ cart.get_total_price }} ₸
-</h3>
-
-
-{% else %}
-<p>Your cart is empty.</p>
-{% endif %}
-
+            <div class="col-lg-4 reveal-right">
+                <div class="summary-card">
+                    <h4>Order Summary</h4>
+                    <div class="summary-item">
+                        <span class="item-name">Items Count</span>
+                        <span class="item-price">{{ cart|length }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="item-name">Delivery</span>
+                        <span class="item-price">Calculated at checkout</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span>{{ cart.get_total_price }} ₸</span>
+                    </div>
+                    
+                    <a href="{% url 'checkout' %}" class="btn-cafe w-100 mt-4 mb-3" style="justify-content:center;">
+                        Proceed to Checkout <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+                    <a href="/menu/" class="btn-cafe-outline w-100" style="justify-content:center; border-color:rgba(245,240,235,0.2);">
+                        Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-state reveal">
+            <div class="empty-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added any items to your cart yet.</p>
+            <a href="/menu/" class="btn-cafe">
+                <i class="fa-solid fa-utensils"></i> Browse Menu
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}
